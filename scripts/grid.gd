@@ -3,8 +3,13 @@ extends Node2D
 @export var grid_size: int = 32
 @export var mycel_scene: PackedScene = preload("res://scenes/mycel.tscn")
 @export var base_turret_mushroom_scene: PackedScene = preload("res://scenes/base_turret_mushroom.tscn")
+@export var cursor_valid_texture: Texture
+@export var cursor_invalid_texture: Texture
 
 @onready var cursor_highlight = $CursorHighlight
+
+const MYCEL_COST = 10
+const TURRET_COST = 50
 
 var grid_map = {}
 
@@ -92,8 +97,22 @@ func place_turret_mushroom(grid_pos: Vector2, turret_mushroom_scene: PackedScene
 	else:
 		print("Failed to place turret mushroom at: ", grid_pos)
 
-func update_cursor_highlight(mouse_pos: Vector2) -> void:
+func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
+	
+	var main_node = get_node("/root/Main")
+	var ui = main_node.get_node("UI")
+	
 	var grid_pos = world_to_grid(mouse_pos + Vector2(16, 16))
 	var world_pos = grid_to_world(grid_pos)
 	cursor_highlight.position = world_pos
 	cursor_highlight.visible = true
+	
+	var valid = false
+	if build_mode == ui.BuildMode.MYCEL:
+		valid = can_place_mycel(grid_pos) and ui.money > MYCEL_COST
+	elif build_mode == ui.BuildMode.TURRET:
+		valid = can_place_turret_mushroom(grid_pos)  and ui.money > TURRET_COST
+	else:
+		valid = false
+	
+	cursor_highlight.texture = cursor_valid_texture if valid else cursor_invalid_texture

@@ -5,12 +5,19 @@ var current_mode = BuildMode.NONE
 
 var money = 500
 
+const MYCEL_COST = 10
+const TURRET_COST = 50
+
 @onready var mycel_button = $Panel/VBoxContainer/MycelButton
 @onready var turret_button = $Panel/VBoxContainer/TurretButton
 @onready var money_label = $Panel/VBoxContainer/MoneyLabel
 
 func _ready():
 	update_money_label()
+	
+func _process(delta):
+	if Input.is_action_just_pressed("deselect_build"):
+		current_mode = BuildMode.NONE
 
 func _on_mycel_button_pressed() -> void:
 	current_mode = BuildMode.MYCEL

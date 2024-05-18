@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 150.0
 @export var curve_height_multiplier: float = 1.0
-@export var attack_damage: int = 1
+@export var attack_damage: int = 25
 
 @onready var animation_player = $AnimationPlayer
 @onready var animated_sprite = $AnimatedSprite2D

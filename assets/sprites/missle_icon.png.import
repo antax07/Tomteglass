@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0st1r7peq2p7"
-path="res://.godot/imported/mycel_icon.png-5d0a6129a48313d4911301dca512c137.ctex"
+uid="uid://dwekl821d0jcc"
+path="res://.godot/imported/missle_icon.png-b705d2f2f46fbb44602499d9c2d4584d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mycel_icon.png"
-dest_files=["res://.godot/imported/mycel_icon.png-5d0a6129a48313d4911301dca512c137.ctex"]
+source_file="res://assets/sprites/missle_icon.png"
+dest_files=["res://.godot/imported/missle_icon.png-b705d2f2f46fbb44602499d9c2d4584d.ctex"]
 
 [params]
 

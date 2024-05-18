@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgac8ed7jemqm"]
+[gd_scene load_steps=7 format=3 uid="uid://dgac8ed7jemqm"]
 
 [ext_resource type="Script" path="res://scripts/wave_manager.gd" id="1_0jt1c"]
 [ext_resource type="PackedScene" uid="uid://b4x5pdb4av343" path="res://scenes/base_insect.tscn" id="2_85eih"]
 [ext_resource type="PackedScene" uid="uid://bkkj05xy03phy" path="res://scenes/fast_insect.tscn" id="3_3sini"]
 [ext_resource type="PackedScene" uid="uid://c8wry8l36soej" path="res://scenes/strong_insect.tscn" id="4_4ljgg"]
 [ext_resource type="PackedScene" uid="uid://bpwnhvgngsb3" path="res://scenes/flying_insect.tscn" id="5_5d5ay"]
+[ext_resource type="PackedScene" uid="uid://dwwpa37hugwb6" path="res://scenes/boss_insect.tscn" id="6_eiafx"]
 
 [node name="Wave Manager" type="Node"]
 script = ExtResource("1_0jt1c")
@@ -12,3 +13,4 @@ base_enemy_scene = ExtResource("2_85eih")
 fast_enemy_scene = ExtResource("3_3sini")
 strong_enemy_scene = ExtResource("4_4ljgg")
 flying_enemy_scene = ExtResource("5_5d5ay")
+boss_enemy_scene = ExtResource("6_eiafx")

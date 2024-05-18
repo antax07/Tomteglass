@@ -19,6 +19,7 @@ func _input(event):
 		var grid_pos = grid.world_to_grid(world_pos)
 		
 		var build_mode = ui.get_current_mode()
+		print(ui.get_current_mode())
 		if build_mode == ui.BuildMode.MYCEL:
 			if grid.can_place_mycel(grid_pos):
 				if ui.spend_money(MYCEL_COST):
@@ -27,11 +28,12 @@ func _input(event):
 			if grid.can_place_turret_mushroom(grid_pos):
 				if ui.spend_money(TURRET_COST):
 					grid.place_turret_mushroom(grid_pos, preload("res://scenes/base_turret_mushroom.tscn"))
+		elif build_mode == ui.BuildMode.REMOVE:
+			grid.remove_object(grid_pos)
 		elif build_mode == ui.BuildMode.WALL:
 			if grid.can_place_turret_mushroom(grid_pos):
 				if ui.spend_money(WALL_COST):
 					grid.place_turret_mushroom(grid_pos, preload("res://scenes/wall_mushroom.tscn"))
-		elif build_mode == ui.BuildMode.REMOVE:
-			grid.remove_object(grid_pos)
+
 func enemy_killed():
 	ui.add_money(20)

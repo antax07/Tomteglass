@@ -4,6 +4,7 @@ extends Node2D
 @export var mycel_scene: PackedScene = preload("res://scenes/mycel.tscn")
 @export var base_turret_mushroom_scene: PackedScene = preload("res://scenes/base_turret_mushroom.tscn")
 @export var wall_mushroom_scene: PackedScene = preload("res://scenes/wall_mushroom.tscn")
+@export var obstiacle_grass: PackedScene = preload("res://scenes/grass_obstacle.tscn")
 @export var cursor_valid_texture: Texture
 @export var cursor_invalid_texture: Texture
 
@@ -18,20 +19,40 @@ var starting_tiles = []
 
 func _ready() -> void:
 	initialize_grid()
-	var center_pos = Vector2(0, 0)
-	for x in range(-1, 2):
-		for y in range(-1, 2):
-			var mycel_pos = center_pos + Vector2(x, y)
-			starting_tiles.append(mycel_pos)
-			var initial_mycel = mycel_scene.instantiate()
-			place_object(mycel_pos, initial_mycel)
-	
 	cursor_highlight.visible = false
 
 func initialize_grid() -> void:
-	for x in range(-10, 10):
-		for y in range(-10, 10):
-			grid_map[Vector2(x, y)] = null
+	var center_free_radius = 2
+	for x in range(-20, 21):
+		for y in range(-20, 21):
+			var grid_pos = Vector2(x, y)
+			grid_map[grid_pos] = null
+
+			# Skip placing grass in the 3x2 center area
+			if abs(x) <= 1 and y >= -1 and y <= 1:
+				continue
+
+			var distance = grid_pos.length()
+			var spawn_chance = get_grass_spawn_chance(distance)
+
+			if randf() < spawn_chance:
+				place_grass(grid_pos)
+
+func get_grass_spawn_chance(distance: float) -> float:
+	if distance <= 1:
+		return 0.0
+	elif distance <= 3:
+		return 0.5
+	elif distance <= 4:
+		return 0.85
+	elif distance <= 5:
+		return 0.95
+	else:
+		return 1.0
+
+func place_grass(grid_pos: Vector2) -> void:
+	var grass = obstiacle_grass.instantiate()
+	place_object(grid_pos, grass)
 
 func world_to_grid(position: Vector2) -> Vector2:
 	return Vector2(floor(position.x / grid_size), floor(position.y / grid_size))
@@ -40,6 +61,8 @@ func grid_to_world(grid_pos: Vector2) -> Vector2:
 	return grid_pos * grid_size
 
 func is_occupied(grid_pos: Vector2) -> bool:
+	if abs(grid_pos.x) <= 1 and grid_pos.y >= -1 and grid_pos.y <= 1:
+		return true  # Central 3x2 area is always "occupied"
 	return grid_pos in grid_map and grid_map[grid_pos] != null
 
 func place_object(grid_pos: Vector2, obj: Node2D) -> void:
@@ -68,18 +91,7 @@ func place_mycel(grid_pos: Vector2) -> void:
 		place_object(grid_pos, mycel)
 
 func can_place_turret_mushroom(grid_pos: Vector2) -> bool:
-	if is_occupied(grid_pos):
-		return false
-	var neighbors = [
-		grid_pos + Vector2(1, 0),
-		grid_pos + Vector2(-1, 0),
-		grid_pos + Vector2(0, 1),
-		grid_pos + Vector2(0, -1)
-	]
-	for neighbor in neighbors:
-		if is_occupied(neighbor) and grid_map[neighbor].get_script() == mycel_scene.get_script():
-			return true
-	return false
+	return not is_occupied(grid_pos)
 
 func place_turret_mushroom(grid_pos: Vector2, turret_mushroom_scene: PackedScene) -> void:
 	if can_place_turret_mushroom(grid_pos):
@@ -87,7 +99,6 @@ func place_turret_mushroom(grid_pos: Vector2, turret_mushroom_scene: PackedScene
 		place_object(grid_pos, turret_mushroom)
 
 func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
-	
 	var main_node = get_node("/root/Main")
 	var ui = main_node.get_node("UI")
 	
@@ -100,9 +111,9 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 	if build_mode == ui.BuildMode.MYCEL:
 		valid = can_place_mycel(grid_pos) and ui.money > MYCEL_COST
 	elif build_mode == ui.BuildMode.TURRET:
-		valid = can_place_turret_mushroom(grid_pos)  and ui.money > TURRET_COST
+		valid = can_place_turret_mushroom(grid_pos) and ui.money > TURRET_COST
 	elif build_mode == ui.BuildMode.WALL:
-		valid = can_place_turret_mushroom(grid_pos)  and ui.money > WALL_COST
+		valid = can_place_turret_mushroom(grid_pos) and ui.money > WALL_COST
 	elif build_mode == ui.BuildMode.REMOVE:
 		valid = is_occupied(grid_pos) and has_sufficient_money_for_removal(grid_pos) and not is_starting_tile(grid_pos)
 	else:
@@ -115,13 +126,12 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 
 func has_sufficient_money_for_removal(grid_pos: Vector2) -> bool:
 	var obj = grid_map[grid_pos]
-	var removal_cost = 0
-	if obj.get_script() == mycel_scene.get_script():
-		removal_cost = int(MYCEL_COST * 1.2)
-	elif obj.get_script() == base_turret_mushroom_scene.get_script():
-		removal_cost = int(TURRET_COST * 1.2)
-	elif obj.get_script() == wall_mushroom_scene.get_script():
-		removal_cost = int(WALL_COST * 1.2)
+	var removal_cost = 20
+	#if obj.get_script() != null:
+		#if obj.get_script() == base_turret_mushroom_scene.get_script():
+			#removal_cost = int(TURRET_COST * 1.2)
+		#elif obj.get_script() == wall_mushroom_scene.get_script():
+			#removal_cost = int(WALL_COST * 1.2)
 	
 	var main_node = get_node("/root/Main")
 	var ui = main_node.get_node("UI")

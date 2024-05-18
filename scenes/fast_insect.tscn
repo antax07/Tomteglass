@@ -196,5 +196,5 @@ script = ExtResource("1_w6p8q")
 [node name="AnimatedSprite2D" parent="." index="0"]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_5h3vm")
-animation = &"death"
+animation = &"walk"
 frame_progress = 0.0

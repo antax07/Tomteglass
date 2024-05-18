@@ -353,19 +353,19 @@ z_index = 5
 script = ExtResource("1_5uhw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -22.47)
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_sunjx")
 animation = &"hurt"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16.43)
+position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_hktwl")
 
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, -19)
+position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_lehkf")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

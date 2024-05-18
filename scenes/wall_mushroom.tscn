@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://2ida083lhfnh"]
 
-[ext_resource type="Script" path="res://scenes/wall_mushroom.gd" id="1_lmkoh"]
-[ext_resource type="Texture2D" uid="uid://b84cdcsmdacf1" path="res://assets/sprites/wall_mushroom.png" id="1_opg2y"]
+[ext_resource type="Texture2D" uid="uid://boc12iuc0tymd" path="res://assets/sprites/wall_mushroom.png" id="1_opg2y"]
+[ext_resource type="Script" path="res://scripts/wall_mushroom.gd" id="1_uw47a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ge6vm"]
 atlas = ExtResource("1_opg2y")
@@ -166,7 +166,7 @@ _data = {
 
 [node name="Wall Mushroom" type="StaticBody2D"]
 collision_mask = 0
-script = ExtResource("1_lmkoh")
+script = ExtResource("1_uw47a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xj4wk")

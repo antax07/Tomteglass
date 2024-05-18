@@ -55,12 +55,12 @@ theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 16
 text = "Place Wall"
 
-[node name="HealthBar" type="TextureProgressBar" parent="Panel/VBoxContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/VBoxContainer"]
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("3_ot5d8")
 
 [connection signal="pressed" from="Panel/VBoxContainer/MycelButton" to="." method="_on_mycel_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/TurretButton" to="." method="_on_turret_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_wall_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_turret_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_wall_button_pressed"]

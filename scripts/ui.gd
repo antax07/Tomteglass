@@ -13,13 +13,21 @@ const WALL_COST = 20
 @onready var turret_button = $Panel/VBoxContainer/TurretButton
 @onready var wall_button = $Panel/VBoxContainer/WallButton
 @onready var money_label = $Panel/VBoxContainer/MoneyLabel
+@onready var texture_progress_bar = $Panel/VBoxContainer/TextureProgressBar
+
+var player_mushroom = null
+var start_health = 0
 
 func _ready():
 	update_money_label()
+	var main_node = get_node("/root/Main")
+	player_mushroom = main_node.get_node("Player Mushroom")
+	start_health = player_mushroom.health
 	
 func _process(delta):
 	if Input.is_action_just_pressed("deselect_build"):
 		current_mode = BuildMode.NONE
+	texture_progress_bar.value = float(player_mushroom.health) / float(start_health) * 100
 
 func _on_mycel_button_pressed() -> void:
 	current_mode = BuildMode.MYCEL

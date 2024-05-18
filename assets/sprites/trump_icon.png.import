@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bii2rugbryion"
-path="res://.godot/imported/main_menu.png-f90b0d8f2f15e6411edc48a4faf511c6.ctex"
+uid="uid://c0xhm430s7uhf"
+path="res://.godot/imported/trump_icon.png-a4a7b8d491979f881f54419fbdbe196b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/main_menu.png"
-dest_files=["res://.godot/imported/main_menu.png-f90b0d8f2f15e6411edc48a4faf511c6.ctex"]
+source_file="res://assets/sprites/trump_icon.png"
+dest_files=["res://.godot/imported/trump_icon.png-a4a7b8d491979f881f54419fbdbe196b.ctex"]
 
 [params]
 

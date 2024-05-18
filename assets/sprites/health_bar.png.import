@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boc12iuc0tymd"
-path="res://.godot/imported/wall_mushroom.png-379a30873cc7b38cb9ccf7622ea5f006.ctex"
+uid="uid://dx8717eq4a2st"
+path="res://.godot/imported/health_bar.png-d9202dd5a9161dd20e8b1243b499b1df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/wall_mushroom.png"
-dest_files=["res://.godot/imported/wall_mushroom.png-379a30873cc7b38cb9ccf7622ea5f006.ctex"]
+source_file="res://assets/sprites/health_bar.png"
+dest_files=["res://.godot/imported/health_bar.png-d9202dd5a9161dd20e8b1243b499b1df.ctex"]
 
 [params]
 

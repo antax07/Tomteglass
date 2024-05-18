@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boc12iuc0tymd"
-path="res://.godot/imported/wall_mushroom.png-d5a0cf8f36138061127bb1db7569ddd5.ctex"
+uid="uid://4xhktgps57wy"
+path="res://.godot/imported/fast_insect.png-f36d83f19e7a3462056f242cc5d121ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/wall_mushroom.png"
-dest_files=["res://.godot/imported/wall_mushroom.png-d5a0cf8f36138061127bb1db7569ddd5.ctex"]
+source_file="res://assets/sprites/fast_insect.png"
+dest_files=["res://.godot/imported/fast_insect.png-f36d83f19e7a3462056f242cc5d121ab.ctex"]
 
 [params]
 

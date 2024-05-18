@@ -10,6 +10,7 @@ extends Node2D
 
 const MYCEL_COST = 10
 const TURRET_COST = 50
+const WALL_COST = 20
 
 var grid_map = {}
 
@@ -45,13 +46,9 @@ func place_object(grid_pos: Vector2, obj: Node2D) -> void:
 		grid_map[grid_pos] = obj
 		obj.position = grid_to_world(grid_pos)
 		add_child(obj)
-		print("Placed object at: ", grid_pos)
-	else:
-		print("Position already occupied: ", grid_pos)
 
 func can_place_mycel(grid_pos: Vector2) -> bool:
 	if is_occupied(grid_pos):
-		print("Grid position is occupied: ", grid_pos)
 		return false
 	var neighbors = [
 		grid_pos + Vector2(1, 0),
@@ -61,21 +58,16 @@ func can_place_mycel(grid_pos: Vector2) -> bool:
 	]
 	for neighbor in neighbors:
 		if is_occupied(neighbor) and grid_map[neighbor].get_script() == mycel_scene.get_script():
-			print("Can place mycel at: ", grid_pos, " Neighbor: ", neighbor)
 			return true
-	print("Cannot place mycel at: ", grid_pos)
 	return false
 
 func place_mycel(grid_pos: Vector2) -> void:
 	if can_place_mycel(grid_pos):
 		var mycel = mycel_scene.instantiate()
 		place_object(grid_pos, mycel)
-	else:
-		print("Failed to place mycel at: ", grid_pos)
 
 func can_place_turret_mushroom(grid_pos: Vector2) -> bool:
 	if is_occupied(grid_pos):
-		print("Grid position is occupied: ", grid_pos)
 		return false
 	var neighbors = [
 		grid_pos + Vector2(1, 0),
@@ -85,17 +77,13 @@ func can_place_turret_mushroom(grid_pos: Vector2) -> bool:
 	]
 	for neighbor in neighbors:
 		if is_occupied(neighbor) and grid_map[neighbor].get_script() == mycel_scene.get_script():
-			print("Can place turret mushroom at: ", grid_pos, " Neighbor: ", neighbor)
 			return true
-	print("Cannot place turret mushroom at: ", grid_pos)
 	return false
 
 func place_turret_mushroom(grid_pos: Vector2, turret_mushroom_scene: PackedScene) -> void:
 	if can_place_turret_mushroom(grid_pos):
 		var turret_mushroom = turret_mushroom_scene.instantiate()
 		place_object(grid_pos, turret_mushroom)
-	else:
-		print("Failed to place turret mushroom at: ", grid_pos)
 
 func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 	
@@ -112,6 +100,8 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 		valid = can_place_mycel(grid_pos) and ui.money > MYCEL_COST
 	elif build_mode == ui.BuildMode.TURRET:
 		valid = can_place_turret_mushroom(grid_pos)  and ui.money > TURRET_COST
+	elif build_mode == ui.BuildMode.WALL:
+		valid = can_place_turret_mushroom(grid_pos)  and ui.money > WALL_COST
 	else:
 		valid = false
 	

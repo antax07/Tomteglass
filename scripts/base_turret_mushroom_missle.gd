@@ -11,7 +11,7 @@ var target: CharacterBody2D = null
 var start_position: Vector2
 var launch_direction: Vector2
 var travel_distance: float
-var elapsed_time: float = 0.0
+var elapsed_time: float = 0.0	
 var total_time: float
 var previous_position: Vector2
 

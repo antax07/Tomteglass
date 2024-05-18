@@ -60,7 +60,6 @@ func death_animation() -> void:
 
 func take_damage(amount: int) -> void:
 	health -= amount
-	#animated_sprite.play("hurt")
 	if health <= 0:
 		die()
 

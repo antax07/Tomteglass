@@ -35,7 +35,6 @@ func take_damage(amount: int) -> void:
 	health -= amount
 	if health <= 0:
 		die()
-	print(health)
 
 func die() -> void:
 	get_tree().reload_current_scene()

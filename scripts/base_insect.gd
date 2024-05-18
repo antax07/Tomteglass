@@ -11,6 +11,7 @@ extends CharacterBody2D
 var target: StaticBody2D = null
 var attack_timer: float = 0.0
 var contains_money: bool = true
+var last_mushroom = null
 
 func _physics_process(delta: float) -> void:
 	find_nearest_mushroom()
@@ -34,10 +35,14 @@ func find_nearest_mushroom() -> void:
 		if distance < closest_distance:
 			closest_distance = distance
 			target = mushroom
+	if target != last_mushroom:
+		animated_sprite.play("walk")
+	last_mushroom = target
 			
 func attack_target() -> void:
 	if target != null:
 		target.take_damage(attack_damage)
+		animated_sprite.play("attack")
 		
 func is_alive() -> bool:
 	if health > 0:

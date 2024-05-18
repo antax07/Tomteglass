@@ -10,10 +10,14 @@ const TURRET_COST = 50
 
 
 func _input(event):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseMotion:
 		var world_pos = camera.get_global_mouse_position()
+		grid.update_cursor_highlight(world_pos)
+
+	if event is InputEventMouseButton and event.pressed:
+		var world_pos = camera.get_global_mouse_position() + Vector2(16, 16)
 		var grid_pos = grid.world_to_grid(world_pos)
-		
+
 		print("Mouse position: ", event.position, " World position: ", world_pos, " Grid position: ", grid_pos)
 		
 		var build_mode = ui.get_current_mode()

@@ -11,6 +11,7 @@ extends StaticBody2D
 
 var target: CharacterBody2D = null
 var enemies_in_range: Array = []
+var alive = true
 
 func _ready() -> void:
 	add_to_group("mushrooms")
@@ -42,7 +43,7 @@ func _on_attack_area_body_exited(body: Node) -> void:
 	enemies_in_range.erase(body)
 
 func _on_reload_timer_timeout() -> void:
-	if target != null:
+	if target != null and alive:
 		animation_player.play("launch")
 
 func launch_missile() -> void:
@@ -54,12 +55,17 @@ func launch_missile() -> void:
 func launch_animation() -> void:
 	animated_sprite.play("attack")
 
+func death_animation() -> void:
+	animated_sprite.play("death")
+
 func take_damage(amount: int) -> void:
 	health -= amount
+	#animated_sprite.play("hurt")
 	if health <= 0:
 		die()
 
 func die() -> void:
+	alive = false
 	remove_from_group("mushrooms")
-	queue_free()
+	animation_player.play("death")
 	

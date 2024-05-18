@@ -4,18 +4,24 @@ extends Node2D
 @export var mycel_scene: PackedScene = preload("res://scenes/mycel.tscn")
 @export var base_turret_mushroom_scene: PackedScene = preload("res://scenes/base_turret_mushroom.tscn")
 
+@onready var cursor_highlight = $CursorHighlight
+
 var grid_map = {}
 
 func _ready() -> void:
 	initialize_grid()
+	# Placing initial mycel under the player mushroom at the center in a 3x3 area
 	var center_pos = Vector2(0, 0)
 	for x in range(-1, 2):
 		for y in range(-1, 2):
 			var mycel_pos = center_pos + Vector2(x, y)
 			var initial_mycel = mycel_scene.instantiate()
 			place_object(mycel_pos, initial_mycel)
+	
+	cursor_highlight.visible = false
 
 func initialize_grid() -> void:
+	# Initialize the grid with empty tiles
 	for x in range(-10, 10):
 		for y in range(-10, 10):
 			grid_map[Vector2(x, y)] = null
@@ -85,3 +91,9 @@ func place_turret_mushroom(grid_pos: Vector2, turret_mushroom_scene: PackedScene
 		place_object(grid_pos, turret_mushroom)
 	else:
 		print("Failed to place turret mushroom at: ", grid_pos)
+
+func update_cursor_highlight(mouse_pos: Vector2) -> void:
+	var grid_pos = world_to_grid(mouse_pos + Vector2(16, 16))
+	var world_pos = grid_to_world(grid_pos)
+	cursor_highlight.position = world_pos
+	cursor_highlight.visible = true

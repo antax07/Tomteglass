@@ -62,6 +62,7 @@ offset_right = -428.745
 offset_bottom = -240.0
 
 [node name="TileMap" type="TileMap" parent="."]
+visible = false
 z_index = -50
 tile_set = SubResource("TileSet_oe74n")
 format = 2

@@ -18,20 +18,24 @@ func _ready() -> void:
 	reload_timer.start()
 
 func _process(delta: float) -> void:
+	if enemies_in_range.size() == 0:
+		animated_sprite.play("idle")
 	update_target()
-
+	
 func update_target() -> void:
 	var closest_distance = INF
 	target = null
 	for enemy in enemies_in_range:
-		if enemy != null:
+		if enemy != null and enemy.is_alive():
 			var distance = global_position.distance_to(enemy.global_position)
 			if distance < closest_distance:
 				closest_distance = distance
 				target = enemy
+		else:
+			enemies_in_range.erase(enemy)
 
 func _on_attack_area_body_entered(body: Node) -> void:
-	if body is CharacterBody2D and body.has_method("take_damage"):
+	if body is CharacterBody2D and body.has_method("take_damage") and body.has_method("is_alive"):
 		enemies_in_range.append(body)
 
 func _on_attack_area_body_exited(body: Node) -> void:
@@ -49,9 +53,6 @@ func launch_missile() -> void:
 	
 func launch_animation() -> void:
 	animated_sprite.play("attack")
-	
-func _on_animated_sprite_2d_animation_finished():
-	animated_sprite.play("idle")
 
 func take_damage(amount: int) -> void:
 	health -= amount

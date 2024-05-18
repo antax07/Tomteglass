@@ -4,6 +4,9 @@ extends CharacterBody2D
 @export var curve_height_multiplier: float = 1.0
 @export var attack_damage: int = 50
 
+@onready var animation_player = $AnimationPlayer
+@onready var animated_sprite = $AnimatedSprite2D
+
 var target: CharacterBody2D = null
 var start_position: Vector2
 var launch_direction: Vector2
@@ -32,6 +35,9 @@ func set_target(target: CharacterBody2D) -> void:
 func get_rotation_angle(position: Vector2, velocity: Vector2) -> float:
 	var angle_radians = atan2(velocity.y, velocity.x)
 	return angle_radians
+	
+func hit_animation() -> void:
+	animated_sprite.play("explosion")
 
 func _process(delta: float) -> void:
 	if target != null:
@@ -53,9 +59,12 @@ func _process(delta: float) -> void:
 		global_position = current_position
 		previous_position = current_position
 		
-		if t >= 1:
+		if t >= 0.95:
 			if target.has_method("take_damage"):
 				target.take_damage(attack_damage)
-			queue_free()
+				animation_player.play("explosion")
 	else:
-		queue_free()
+		if animated_sprite.animation != "explosion":
+			animation_player.play("explosion")
+		if animation_player.get_current_animation_length() <= animation_player.get_current_animation_position():
+			queue_free()

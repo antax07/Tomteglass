@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgac8ed7jemqm"]
+[gd_scene load_steps=4 format=3 uid="uid://dgac8ed7jemqm"]
 
 [ext_resource type="Script" path="res://scripts/wave_manager.gd" id="1_0jt1c"]
+[ext_resource type="PackedScene" uid="uid://b4x5pdb4av343" path="res://scenes/base_insect.tscn" id="2_85eih"]
+[ext_resource type="PackedScene" uid="uid://bkkj05xy03phy" path="res://scenes/fast_insect.tscn" id="3_3sini"]
 
 [node name="Wave Manager" type="Node"]
 script = ExtResource("1_0jt1c")
+base_enemy_scene = ExtResource("2_85eih")
+fast_enemy_scene = ExtResource("3_3sini")

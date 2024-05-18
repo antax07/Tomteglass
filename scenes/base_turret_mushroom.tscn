@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b4wmq4epopmq7"]
+[gd_scene load_steps=44 format=3 uid="uid://b4wmq4epopmq7"]
 
 [ext_resource type="Script" path="res://scripts/base_turret_mushroom.gd" id="1_iie68"]
 [ext_resource type="Texture2D" uid="uid://cub0wnrv2d8ao" path="res://assets/sprites/base_turret_mushroom.png" id="2_ejghf"]
@@ -292,12 +292,28 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u0p8i"]
+resource_name = "death"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7hq7k"]
 _data = {
+"death": SubResource("Animation_u0p8i"),
 "launch": SubResource("Animation_f85h8")
 }
 
 [node name="Base Turret Mushroom" type="StaticBody2D"]
+z_index = 4
 script = ExtResource("1_iie68")
 missile_scene = ExtResource("2_sq8dy")
 

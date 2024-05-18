@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: float = 150.0
 @export var curve_height_multiplier: float = 1.0
-@export var attack_damage: int = 50
+@export var attack_damage: int = 25
 
 @onready var animation_player = $AnimationPlayer
 @onready var animated_sprite = $AnimatedSprite2D
@@ -62,6 +62,7 @@ func _process(delta: float) -> void:
 		if t >= 0.95:
 			if target.has_method("take_damage"):
 				target.take_damage(attack_damage)
+				attack_damage = 0 
 				animation_player.play("explosion")
 	else:
 		if animated_sprite.animation != "explosion":

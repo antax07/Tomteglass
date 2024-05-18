@@ -10,8 +10,10 @@ extends CharacterBody2D
 
 var target: StaticBody2D = null
 var attack_timer: float = 0.0
+var contains_money: bool = true
 
 func _physics_process(delta: float) -> void:
+	find_nearest_mushroom()
 	if target != null:
 		velocity = (target.global_position - global_position).normalized() * speed
 		var direction = (target.global_position - global_position).normalized()
@@ -22,8 +24,7 @@ func _physics_process(delta: float) -> void:
 		if attack_timer <= 0 and global_position.distance_to(target.global_position) < 20:
 			attack_timer = attack_interval
 			attack_target()
-	else:
-		find_nearest_mushroom()
+		
 		
 func find_nearest_mushroom() -> void:
 	var mushrooms = get_tree().get_nodes_in_group("mushrooms")
@@ -53,4 +54,8 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	if contains_money:
+		var ui_node = get_tree().root.get_node("Main/UI")
+		ui_node.add_money(20)
+		contains_money = false
 	animation_player.play("death")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6hwbcwwio6ro"]
+
+[ext_resource type="Texture2D" uid="uid://c3u4ayn3j1sxr" path="res://icon.svg" id="1_7vms5"]
+
+[node name="Mycel" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7vms5")
+region_enabled = true
+region_rect = Rect2(18.315, 12.795, 32, 32)

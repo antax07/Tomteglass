@@ -60,5 +60,6 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	queue_free()
 	remove_from_group("mushrooms")
+	queue_free()
+	

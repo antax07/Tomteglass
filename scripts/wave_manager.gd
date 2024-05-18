@@ -3,6 +3,7 @@ extends Node
 @export var base_enemy_scene: PackedScene
 @export var fast_enemy_scene: PackedScene
 @export var strong_enemy_scene: PackedScene
+@export var flying_enemy_scene: PackedScene
 @export var initial_wave_delay: float = 10.0
 @export var initial_spawn_interval: float = 3.0
 @export var initial_wave_size: int = 1
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 
 	if wave_timer <= 0:
 		start_next_wave()
-	
+
 	if difficulty_timer >= difficulty_increase_interval:
 		increase_difficulty()
 		difficulty_timer = 0
@@ -44,7 +45,7 @@ func spawn_wave() -> void:
 		spawn_timer = spawn_interval * i
 		await get_tree().create_timer(spawn_timer).timeout
 		spawn_enemy()
-		
+
 func spawn_enemy() -> void:
 	var spawn_point = get_random_border_point()
 	var enemy_scene = choose_enemy_type()
@@ -75,9 +76,11 @@ func get_random_border_point() -> Vector2:
 
 func choose_enemy_type() -> PackedScene:
 	var rand = randi() % 100
-	if rand < 70:
+	if rand < 60:
 		return base_enemy_scene
-	elif rand < 90:
+	elif rand < 70:
+		return flying_enemy_scene
+	elif rand < 80:
 		return fast_enemy_scene
 	else:
 		return strong_enemy_scene

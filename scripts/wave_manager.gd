@@ -3,10 +3,10 @@ extends Node
 @export var base_enemy_scene: PackedScene
 @export var fast_enemy_scene: PackedScene
 @export var strong_enemy_scene: PackedScene
-@export var initial_wave_delay: float = 5.0
-@export var initial_spawn_interval: float = 2.0
-@export var initial_wave_size: int = 5
-@export var difficulty_increase_interval: float = 30.0  # Time in seconds to increase difficulty
+@export var initial_wave_delay: float = 10.0
+@export var initial_spawn_interval: float = 3.0
+@export var initial_wave_size: int = 1
+@export var difficulty_increase_interval: float = 60.0
 @export var map_size: Vector2 = Vector2(1280, 720)
 
 var current_wave: int = 0
@@ -75,7 +75,7 @@ func get_random_border_point() -> Vector2:
 
 func choose_enemy_type() -> PackedScene:
 	var rand = randi() % 100
-	if rand < 60:
+	if rand < 70:
 		return base_enemy_scene
 	elif rand < 90:
 		return fast_enemy_scene
@@ -84,5 +84,5 @@ func choose_enemy_type() -> PackedScene:
 
 func increase_difficulty() -> void:
 	difficulty_level += 1
-	wave_size += 3
-	spawn_interval = max(0.5, spawn_interval - 0.1)
+	wave_size += 1
+	spawn_interval = max(1.0, spawn_interval - 0.1)

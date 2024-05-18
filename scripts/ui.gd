@@ -1,6 +1,6 @@
 extends Control
 
-enum BuildMode { NONE, MYCEL, TURRET, WALL }
+enum BuildMode { NONE, MYCEL, TURRET, WALL, REMOVE }
 var current_mode = BuildMode.NONE
 
 var money = 500
@@ -12,8 +12,10 @@ const WALL_COST = 20
 @onready var mycel_button = $Panel/VBoxContainer/MycelButton
 @onready var turret_button = $Panel/VBoxContainer/TurretButton
 @onready var wall_button = $Panel/VBoxContainer/WallButton
+@onready var remove_button = $Panel/VBoxContainer/RemoveButton
+
 @onready var money_label = $Panel/VBoxContainer/MoneyLabel
-@onready var texture_progress_bar = $Panel/VBoxContainer/TextureProgressBar
+@onready var texture_progress_bar = $Panel/VBoxContainer/HealthBar
 
 var player_mushroom = null
 var start_health = 0
@@ -37,6 +39,9 @@ func _on_turret_button_pressed() -> void:
 	
 func _on_wall_button_pressed():
 	current_mode = BuildMode.WALL
+	
+func _on_remove_button_pressed():
+	current_mode = BuildMode.REMOVE
 
 func get_current_mode() -> BuildMode:
 	return current_mode
@@ -55,5 +60,7 @@ func spend_money(amount: int) -> bool:
 		return true
 	else:
 		return false
+
+
 
 

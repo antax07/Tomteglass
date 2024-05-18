@@ -31,5 +31,7 @@ func _input(event):
 			if grid.can_place_turret_mushroom(grid_pos):
 				if ui.spend_money(WALL_COST):
 					grid.place_turret_mushroom(grid_pos, preload("res://scenes/wall_mushroom.tscn"))
+		elif build_mode == ui.BuildMode.REMOVE:
+			grid.remove_object(grid_pos)
 func enemy_killed():
 	ui.add_money(20)

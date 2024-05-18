@@ -3,6 +3,7 @@ extends Node2D
 @export var grid_size: int = 32
 @export var mycel_scene: PackedScene = preload("res://scenes/mycel.tscn")
 @export var base_turret_mushroom_scene: PackedScene = preload("res://scenes/base_turret_mushroom.tscn")
+@export var wall_mushroom_scene: PackedScene = preload("res://scenes/wall_mushroom.tscn")
 @export var cursor_valid_texture: Texture
 @export var cursor_invalid_texture: Texture
 
@@ -13,21 +14,21 @@ const TURRET_COST = 50
 const WALL_COST = 20
 
 var grid_map = {}
+var starting_tiles = []
 
 func _ready() -> void:
 	initialize_grid()
-	# Placing initial mycel under the player mushroom at the center in a 3x3 area
 	var center_pos = Vector2(0, 0)
 	for x in range(-1, 2):
 		for y in range(-1, 2):
 			var mycel_pos = center_pos + Vector2(x, y)
+			starting_tiles.append(mycel_pos)
 			var initial_mycel = mycel_scene.instantiate()
 			place_object(mycel_pos, initial_mycel)
 	
 	cursor_highlight.visible = false
 
 func initialize_grid() -> void:
-	# Initialize the grid with empty tiles
 	for x in range(-10, 10):
 		for y in range(-10, 10):
 			grid_map[Vector2(x, y)] = null
@@ -102,6 +103,8 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 		valid = can_place_turret_mushroom(grid_pos)  and ui.money > TURRET_COST
 	elif build_mode == ui.BuildMode.WALL:
 		valid = can_place_turret_mushroom(grid_pos)  and ui.money > WALL_COST
+	elif build_mode == ui.BuildMode.REMOVE:
+		valid = is_occupied(grid_pos) and has_sufficient_money_for_removal(grid_pos) and not is_starting_tile(grid_pos)
 	else:
 		valid = false
 	
@@ -109,3 +112,31 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 		cursor_highlight.visible = false
 	
 	cursor_highlight.texture = cursor_valid_texture if valid else cursor_invalid_texture
+
+func has_sufficient_money_for_removal(grid_pos: Vector2) -> bool:
+	var obj = grid_map[grid_pos]
+	var removal_cost = 0
+	if obj.get_script() == mycel_scene.get_script():
+		removal_cost = int(MYCEL_COST * 1.2)
+	elif obj.get_script() == base_turret_mushroom_scene.get_script():
+		removal_cost = int(TURRET_COST * 1.2)
+	elif obj.get_script() == wall_mushroom_scene.get_script():
+		removal_cost = int(WALL_COST * 1.2)
+	
+	var main_node = get_node("/root/Main")
+	var ui = main_node.get_node("UI")
+	return ui.money >= removal_cost
+
+func is_starting_tile(grid_pos: Vector2) -> bool:
+	return grid_pos in starting_tiles
+
+func remove_object(grid_pos: Vector2) -> void:
+	if is_occupied(grid_pos) and not is_starting_tile(grid_pos):
+		var obj = grid_map[grid_pos]
+		var removal_cost = 20
+
+		var main_node = get_node("/root/Main")
+		var ui = main_node.get_node("UI")
+		if ui.spend_money(removal_cost):
+			obj.queue_free()
+			grid_map[grid_pos] = null

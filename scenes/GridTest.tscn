@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp7srfyjl4rfc"]
+
+[ext_resource type="Script" path="res://scenes/Tileset.gd" id="1_d3h4k"]
+[ext_resource type="PackedScene" uid="uid://b4wmq4epopmq7" path="res://scenes/base_turret_mushroom.tscn" id="1_ud01j"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cod6j"]
+scenes/1/scene = ExtResource("1_ud01j")
+
+[sub_resource type="TileSet" id="TileSet_q37b1"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetScenesCollectionSource_cod6j")
+
+[node name="GridTest" type="Node2D"]
+
+[node name="Tileset" type="Node2D" parent="."]
+script = ExtResource("1_d3h4k")
+
+[node name="TileMap" type="TileMap" parent="Tileset"]
+tile_set = SubResource("TileSet_q37b1")
+format = 2

@@ -34,7 +34,7 @@ func get_current_mode() -> BuildMode:
 	return current_mode
 
 func update_money_label() -> void:
-	money_label.text = "Money: " + str(money)
+	money_label.text = "Nutriece: " + str(money)
 
 func add_money(amount: int) -> void:
 	money += amount

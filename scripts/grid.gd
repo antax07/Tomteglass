@@ -105,4 +105,7 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 	else:
 		valid = false
 	
+	if build_mode == 0:
+		cursor_highlight.visible = false
+	
 	cursor_highlight.texture = cursor_valid_texture if valid else cursor_invalid_texture

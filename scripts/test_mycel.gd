@@ -14,7 +14,7 @@ func _input(event):
 		var world_pos = camera.get_global_mouse_position()
 		grid.update_cursor_highlight(world_pos, ui.get_current_mode())
 
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var world_pos = camera.get_global_mouse_position() + Vector2(16, 16)
 		var grid_pos = grid.world_to_grid(world_pos)
 		

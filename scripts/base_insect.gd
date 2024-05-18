@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 		if attack_timer <= 0 and global_position.distance_to(target.global_position) < 20:
 			attack_timer = attack_interval
 			attack_target()
+	animated_sprite.play("walk")
 		
 		
 func find_nearest_mushroom() -> void:

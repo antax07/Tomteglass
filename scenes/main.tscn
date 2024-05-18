@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0yhc8o3vws2f"]
+
+[ext_resource type="PackedScene" uid="uid://hxvfvja7fdp1" path="res://scenes/player_mushroom.tscn" id="1_c3oit"]
+[ext_resource type="PackedScene" uid="uid://b4x5pdb4av343" path="res://scenes/base_insect.tscn" id="2_85dav"]
+[ext_resource type="PackedScene" uid="uid://bkkj05xy03phy" path="res://scenes/fast_insect.tscn" id="3_d6nns"]
+[ext_resource type="PackedScene" uid="uid://b4wmq4epopmq7" path="res://scenes/base_turret_mushroom.tscn" id="4_vwwje"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(0.745, 0)
+
+[node name="Player Mushroom" parent="." instance=ExtResource("1_c3oit")]
+
+[node name="Fast Insect" parent="." instance=ExtResource("3_d6nns")]
+position = Vector2(463.255, -92)
+
+[node name="Base Insect" parent="." instance=ExtResource("2_85dav")]
+position = Vector2(439.255, -214)
+
+[node name="Base Turret Mushroom" parent="." instance=ExtResource("4_vwwje")]
+position = Vector2(167.255, -11)
+
+[node name="Base Turret Mushroom2" parent="." instance=ExtResource("4_vwwje")]
+position = Vector2(-48.745, -149)
+
+[node name="Base Turret Mushroom3" parent="." instance=ExtResource("4_vwwje")]
+position = Vector2(-97.745, 96)
+
+[node name="Base Insect2" parent="." instance=ExtResource("2_85dav")]
+position = Vector2(-337.745, 229)
+
+[node name="Base Insect3" parent="." instance=ExtResource("2_85dav")]
+position = Vector2(-490.745, -106)
+
+[node name="Fast Insect2" parent="." instance=ExtResource("3_d6nns")]
+position = Vector2(56.255, 242)
+
+[node name="Fast Insect3" parent="." instance=ExtResource("3_d6nns")]
+position = Vector2(-247.745, -318)

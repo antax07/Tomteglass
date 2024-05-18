@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkkj05xy03phy"]
+
+[ext_resource type="PackedScene" uid="uid://b4x5pdb4av343" path="res://scenes/base_insect.tscn" id="1_gg7qx"]
+[ext_resource type="Script" path="res://scripts/fast_insect.gd" id="1_w6p8q"]
+
+[node name="Fast Insect" instance=ExtResource("1_gg7qx")]
+script = ExtResource("1_w6p8q")

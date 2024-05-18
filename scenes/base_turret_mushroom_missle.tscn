@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjho7ikbt6jl6"]
+
+[ext_resource type="Texture2D" uid="uid://c8v5n5p0c3yri" path="res://assets/sprites/base_turret_mushroom_missle.png" id="1_c8rb7"]
+[ext_resource type="Script" path="res://scenes/base_turret_mushroom_missle.gd" id="1_l0lyu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu2k3"]
+atlas = ExtResource("1_c8rb7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnx5q"]
+atlas = ExtResource("1_c8rb7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlcx5"]
+atlas = ExtResource("1_c8rb7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djttj"]
+atlas = ExtResource("1_c8rb7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjvlq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu2k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnx5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlcx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djttj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42j6y"]
+size = Vector2(10, 5)
+
+[node name="Base Turret Mushroom Missle" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_l0lyu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_xjvlq")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.890002
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0.5)
+shape = SubResource("RectangleShape2D_42j6y")

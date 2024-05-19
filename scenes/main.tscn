@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0yhc8o3vws2f"]
+[gd_scene load_steps=11 format=3 uid="uid://b0yhc8o3vws2f"]
 
 [ext_resource type="PackedScene" uid="uid://hxvfvja7fdp1" path="res://scenes/player_mushroom.tscn" id="1_c3oit"]
 [ext_resource type="PackedScene" uid="uid://dgac8ed7jemqm" path="res://scenes/wave_manager.tscn" id="3_aku0n"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bkkj05xy03phy" path="res://scenes/fast_insect.tscn" id="6_4uced"]
 [ext_resource type="PackedScene" uid="uid://dy8wv0viambpc" path="res://scenes/ui.tscn" id="6_ambyc"]
 [ext_resource type="Texture2D" uid="uid://dy7gy4gl40t34" path="res://assets/sprites/grass_sheet.png" id="7_6dpab"]
+[ext_resource type="FontFile" uid="uid://tmwb77ybimlj" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="7_csjx8"]
+[ext_resource type="Script" path="res://scenes/Button.gd" id="8_yw0ow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5oghb"]
 texture = ExtResource("7_6dpab")
@@ -65,3 +67,15 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 0, 65534, 0, 0, 262138, 0, 0, 196603
 
 [node name="Fast Insect" parent="." instance=ExtResource("6_4uced")]
 position = Vector2(-366.745, 204)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 463.255
+offset_top = -288.0
+offset_right = 511.255
+offset_bottom = -240.0
+theme_override_fonts/font = ExtResource("7_csjx8")
+theme_override_font_sizes/font_size = 40
+text = "X"
+script = ExtResource("8_yw0ow")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

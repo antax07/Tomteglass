@@ -86,17 +86,19 @@ func can_place_mycel(grid_pos: Vector2) -> bool:
 	return false
 
 func place_mycel(grid_pos: Vector2) -> void:
-	if can_place_mycel(grid_pos):
-		var mycel = mycel_scene.instantiate()
-		place_object(grid_pos, mycel)
+	if not is_mouse_in_ui_area():
+		if can_place_mycel(grid_pos):
+			var mycel = mycel_scene.instantiate()
+			place_object(grid_pos, mycel)
 
 func can_place_turret_mushroom(grid_pos: Vector2) -> bool:
 	return not is_occupied(grid_pos)
 
 func place_turret_mushroom(grid_pos: Vector2, turret_mushroom_scene: PackedScene) -> void:
-	if can_place_turret_mushroom(grid_pos):
-		var turret_mushroom = turret_mushroom_scene.instantiate()
-		place_object(grid_pos, turret_mushroom)
+	if not is_mouse_in_ui_area():
+		if can_place_turret_mushroom(grid_pos):
+			var turret_mushroom = turret_mushroom_scene.instantiate()
+			place_object(grid_pos, turret_mushroom)
 
 func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 	var main_node = get_node("/root/Main")
@@ -127,11 +129,6 @@ func update_cursor_highlight(mouse_pos: Vector2, build_mode: int) -> void:
 func has_sufficient_money_for_removal(grid_pos: Vector2) -> bool:
 	var obj = grid_map[grid_pos]
 	var removal_cost = 20
-	#if obj.get_script() != null:
-		#if obj.get_script() == base_turret_mushroom_scene.get_script():
-			#removal_cost = int(TURRET_COST * 1.2)
-		#elif obj.get_script() == wall_mushroom_scene.get_script():
-			#removal_cost = int(WALL_COST * 1.2)
 	
 	var main_node = get_node("/root/Main")
 	var ui = main_node.get_node("UI")
@@ -141,33 +138,29 @@ func is_starting_tile(grid_pos: Vector2) -> bool:
 	return grid_pos in starting_tiles
 
 func remove_object(grid_pos: Vector2) -> void:
-	if is_occupied(grid_pos) and not is_starting_tile(grid_pos):
-		var obj = grid_map[grid_pos]
-		var removal_cost = 20
+	if not is_mouse_in_ui_area():
+		if is_occupied(grid_pos) and not is_starting_tile(grid_pos):
+			var obj = grid_map[grid_pos]
+			var removal_cost = 20
 
-		var main_node = get_node("/root/Main")
-		var ui = main_node.get_node("UI")
-		if ui.spend_money(removal_cost):
-			# Define the 3x3 square centered at (0,0)
-			var safe_zone_center = Vector2(0, 0)
-			var safe_zone_radius = 1
-			
-			# Check if grid_pos is inside the 3x3 square
-			if abs(grid_pos.x - safe_zone_center.x) <= safe_zone_radius and abs(grid_pos.y - safe_zone_center.y) <= safe_zone_radius:
-				print("Cannot remove objects within the safety zone.")
-				return
-			
-			# Check if the cell above contains grass and play the animation if true
-			var above_pos = grid_pos + Vector2(0, -1)
-			if is_grass(above_pos):
-				var above_grass = grid_map[above_pos]
-				#above_grass.get_node("AnimationPlayer2D").play("default")
-				above_grass.play_grass_animation()
+			var main_node = get_node("/root/Main")
+			var ui = main_node.get_node("UI")
+			if ui.spend_money(removal_cost):
+				var safe_zone_center = Vector2(0, 0)
+				var safe_zone_radius = 1
+				
+				if abs(grid_pos.x - safe_zone_center.x) <= safe_zone_radius and abs(grid_pos.y - safe_zone_center.y) <= safe_zone_radius:
+					print("Cannot remove objects within the safety zone.")
+					return
+				
+				var above_pos = grid_pos + Vector2(0, -1)
+				if is_grass(above_pos):
+					var above_grass = grid_map[above_pos]
+					above_grass.play_grass_animation()
 
-			obj.queue_free()
-			grid_map[grid_pos] = null
+				obj.queue_free()
+				grid_map[grid_pos] = null
 
-# New function to check if a grid cell contains grass
 func is_grass(grid_pos: Vector2) -> bool:
 	if is_within_grid_bounds(grid_pos) and grid_map[grid_pos] != null:
 		
@@ -176,6 +169,9 @@ func is_grass(grid_pos: Vector2) -> bool:
 			return true
 	return false
 
-# Helper function to check if a grid position is within the grid bounds
 func is_within_grid_bounds(grid_pos: Vector2) -> bool:
 	return grid_pos in grid_map
+
+func is_mouse_in_ui_area() -> bool:
+	var mouse_pos = get_global_mouse_position()
+	return mouse_pos.x >= -500 and mouse_pos.x <= -270 and mouse_pos.y >= -280 and mouse_pos.y <= -80

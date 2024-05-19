@@ -145,13 +145,13 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 89.0
-offset_top = 544.0
-offset_right = 944.0
-offset_bottom = 568.0
+offset_left = 59.0
+offset_top = 541.0
+offset_right = 956.0
+offset_bottom = 565.0
 theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 24
-text = "Enemies are apraoching, build your defeces..."
+text = "Enemies are approaching, build your defences..."
 
 [connection signal="pressed" from="Panel/VBoxContainer/TurretButton" to="." method="_on_turret_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_wall_button_pressed"]

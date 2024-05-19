@@ -5,7 +5,7 @@ extends Node2D
 @onready var ui = %UI
 
 const MYCEL_COST = 10
-const TURRET_COST = 50
+const TURRET_COST = 40
 const WALL_COST = 20
 
 

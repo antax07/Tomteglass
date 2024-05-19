@@ -7,21 +7,21 @@ extends Node
 @export var boss_enemy_scene: PackedScene
 @export var map_size: Vector2 = Vector2(1280, 720)
 
-@export var base_enemy_health: int = 100
-@export var base_enemy_attack: int = 10
+@export var base_enemy_health: int = 80
+@export var base_enemy_attack: int = 5
 @export var fast_enemy_health: int = 75
-@export var fast_enemy_attack: int = 15
+@export var fast_enemy_attack: int = 10
 @export var flying_enemy_health: int = 50
-@export var flying_enemy_attack: int = 20
+@export var flying_enemy_attack: int = 10
 @export var strong_enemy_health: int = 200
-@export var strong_enemy_attack: int = 25
-@export var boss_enemy_health: int = 1000
+@export var strong_enemy_attack: int = 15
+@export var boss_enemy_health: int = 700
 @export var boss_enemy_attack: int = 50
 
-@export var waves_between_bosses: int = 50  # Increased to delay boss appearance
-@export var wave_interval: float = 10.0  # Time in seconds between waves
+@export var waves_between_bosses: int = 30  # Reduced to delay boss appearance
+@export var wave_interval: float = 10.0  # Reduced time in seconds between waves
 @export var min_enemies_per_type: int = 1  # Minimum number of enemies to spawn per type
-@export var max_enemies_per_wave: int = 10  # Cap the number of enemies per wave
+@export var max_enemies_per_wave: int = 5  # Cap the number of enemies per wave
 
 var current_wave: int = 0
 var enemy_types: Array
@@ -70,7 +70,7 @@ func start_next_wave():
 			enemy_pool.append(boss_instance)
 	else:
 		print("Spawning regular wave")
-		var wave_strength = current_wave * 5  # Reduce scaling factor
+		var wave_strength = current_wave * 2  # Further reduce scaling factor
 		for enemy_type in get_available_enemy_types():
 			var calculated_spawn = int(wave_strength / (enemy_type["health"] + enemy_type["attack"]))
 			var num_to_spawn = max(min_enemies_per_type, min(max_enemies_per_wave, calculated_spawn))

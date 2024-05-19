@@ -6,7 +6,7 @@ var current_mode = BuildMode.NONE
 var money = 120
 
 const MYCEL_COST = 10
-const TURRET_COST = 50
+const TURRET_COST = 40
 const WALL_COST = 20
 
 @onready var turret_button = $Panel/VBoxContainer/TurretButton
@@ -31,7 +31,7 @@ func _process(delta):
 	texture_progress_bar.value = float(player_mushroom.health) / float(start_health) * 100
 	var main_node = get_node("/root/Main")
 	var wave_manager = main_node.get_node("Wave Manager")
-	label.text = "Score: " + str(wave_manager.current_wave - 5)
+	label.text = "Score: " + str(wave_manager.current_wave)
 
 func _on_turret_button_pressed() -> void:
 	current_mode = BuildMode.TURRET

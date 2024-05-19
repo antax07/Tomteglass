@@ -11,7 +11,7 @@ extends Node2D
 @onready var cursor_highlight = $CursorHighlight
 
 const MYCEL_COST = 10
-const TURRET_COST = 50
+const TURRET_COST = 40
 const WALL_COST = 20
 
 var grid_map = {}

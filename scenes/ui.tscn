@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy8wv0viambpc"]
+[gd_scene load_steps=8 format=3 uid="uid://dy8wv0viambpc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_dyxyl"]
 [ext_resource type="FontFile" uid="uid://domppl16314ho" path="res://assets/fonts/PixelOperator8.ttf" id="2_30mfx"]
+[ext_resource type="Texture2D" uid="uid://c16b74cjy1k2u" path="res://assets/sprites/nutriece_icon.png" id="3_k7540"]
 [ext_resource type="Texture2D" uid="uid://dx8717eq4a2st" path="res://assets/sprites/health_bar.png" id="3_ot5d8"]
 [ext_resource type="Texture2D" uid="uid://dwekl821d0jcc" path="res://assets/sprites/missle_icon.png" id="4_mdc8c"]
 [ext_resource type="Texture2D" uid="uid://bsv1ssc647qyj" path="res://assets/sprites/wall_icon.png" id="5_c3275"]
@@ -12,6 +13,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dyxyl")
@@ -37,11 +42,43 @@ offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MoneyLabel" type="Label" parent="Panel/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="Panel/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -8.0
+offset_right = 136.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 16
-text = "Nutriece: 0"
+text = "Mycel: 0000"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Panel2/MoneyLabel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -235.0
+offset_top = -17.0
+offset_right = -171.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.512783, 0.512783)
+texture = ExtResource("3_k7540")
+expand_mode = 1
 
 [node name="TurretButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -61,7 +98,7 @@ icon = ExtResource("5_c3275")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 16
-text = "Remove"
+text = "Remove      "
 icon = ExtResource("6_h6786")
 
 [node name="HealthBar" type="TextureProgressBar" parent="Panel/VBoxContainer"]
@@ -70,6 +107,17 @@ size_flags_horizontal = 4
 value = 100.0
 texture_progress = ExtResource("3_ot5d8")
 
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 786.0
+offset_top = 8.0
+offset_right = 1022.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_30mfx")
+theme_override_font_sizes/font_size = 24
+text = "Exit to menu"
+
 [connection signal="pressed" from="Panel/VBoxContainer/TurretButton" to="." method="_on_turret_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_wall_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

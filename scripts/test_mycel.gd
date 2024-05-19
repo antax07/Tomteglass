@@ -19,7 +19,6 @@ func _input(event):
 		var grid_pos = grid.world_to_grid(world_pos)
 		
 		var build_mode = ui.get_current_mode()
-		print(ui.get_current_mode())
 		if build_mode == ui.BuildMode.MYCEL:
 			if grid.can_place_mycel(grid_pos):
 				if ui.spend_money(MYCEL_COST):

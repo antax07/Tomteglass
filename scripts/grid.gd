@@ -28,7 +28,6 @@ func initialize_grid() -> void:
 			var grid_pos = Vector2(x, y)
 			grid_map[grid_pos] = null
 
-			# Skip placing grass in the 3x2 center area
 			if abs(x) <= 1 and y >= -1 and y <= 1:
 				continue
 
@@ -150,13 +149,13 @@ func remove_object(grid_pos: Vector2) -> void:
 				var safe_zone_radius = 1
 				
 				if abs(grid_pos.x - safe_zone_center.x) <= safe_zone_radius and abs(grid_pos.y - safe_zone_center.y) <= safe_zone_radius:
-					print("Cannot remove objects within the safety zone.")
 					return
 				
 				var above_pos = grid_pos + Vector2(0, -1)
 				if is_grass(above_pos):
 					var above_grass = grid_map[above_pos]
-					above_grass.play_grass_animation()
+					if above_grass.has_method("play_grass_animation"):
+						above_grass.play_grass_animation()
 
 				obj.queue_free()
 				grid_map[grid_pos] = null
@@ -165,7 +164,6 @@ func is_grass(grid_pos: Vector2) -> bool:
 	if is_within_grid_bounds(grid_pos) and grid_map[grid_pos] != null:
 		
 		if "StaticBody2D" in grid_map[grid_pos].name:
-			#print(grid_map[grid_pos].name)
 			return true
 	return false
 

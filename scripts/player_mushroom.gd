@@ -32,7 +32,6 @@ func _on_attack_area_body_exited(body):
 	enemies_in_range.erase(body)
 	
 func take_damage(amount: int) -> void:
-	#animated_sprite.play("hurt")
 	health -= amount
 	if health <= 0:
 		die()

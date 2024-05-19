@@ -13,7 +13,7 @@ const WALL_COST = 20
 @onready var turret_button = $Panel/VBoxContainer/TurretButton
 @onready var wall_button = $Panel/VBoxContainer/WallButton
 @onready var remove_button = $Panel/VBoxContainer/RemoveButton
-@onready var money_label = $Panel/VBoxContainer/MoneyLabel
+@onready var money_label = $Panel/VBoxContainer/Panel2/MoneyLabel
 @onready var texture_progress_bar = $Panel/VBoxContainer/HealthBar
 
 var player_mushroom = null
@@ -43,7 +43,7 @@ func get_current_mode() -> BuildMode:
 	return current_mode
 
 func update_money_label() -> void:
-	money_label.text = "Nutrition: " + str(money)
+	money_label.text = "Mycel: " + str(money)
 
 func add_money(amount: int) -> void:
 	money += amount
@@ -56,3 +56,7 @@ func spend_money(amount: int) -> bool:
 		return true
 	else:
 		return false
+
+
+func _on_exit_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

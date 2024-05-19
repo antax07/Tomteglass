@@ -30,9 +30,6 @@ func _process(delta):
 		current_mode = BuildMode.NONE
 	texture_progress_bar.value = float(player_mushroom.health) / float(start_health) * 100
 
-func _on_mycel_button_pressed() -> void:
-	current_mode = BuildMode.MYCEL
-
 func _on_turret_button_pressed() -> void:
 	current_mode = BuildMode.TURRET
 	
@@ -59,7 +56,3 @@ func spend_money(amount: int) -> bool:
 		return true
 	else:
 		return false
-
-
-func _on_button_pressed():
-	current_mode = BuildMode.REMOVE

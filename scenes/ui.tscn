@@ -71,6 +71,5 @@ value = 100.0
 texture_progress = ExtResource("3_ot5d8")
 
 [connection signal="pressed" from="Panel/VBoxContainer/TurretButton" to="." method="_on_turret_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_turret_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_wall_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/RemoveButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]

@@ -156,7 +156,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7nk1"]
-size = Vector2(22, 16)
+size = Vector2(23, 11)
 
 [sub_resource type="Animation" id="Animation_e0tdx"]
 resource_name = "death"
@@ -191,9 +191,8 @@ script = ExtResource("1_l8n6i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_k4hwo")
-animation = &"attack"
+animation = &"death"
 autoplay = "walk"
-frame_progress = 0.269853
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m7nk1")

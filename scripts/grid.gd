@@ -148,5 +148,34 @@ func remove_object(grid_pos: Vector2) -> void:
 		var main_node = get_node("/root/Main")
 		var ui = main_node.get_node("UI")
 		if ui.spend_money(removal_cost):
+			# Define the 3x3 square centered at (0,0)
+			var safe_zone_center = Vector2(0, 0)
+			var safe_zone_radius = 1
+			
+			# Check if grid_pos is inside the 3x3 square
+			if abs(grid_pos.x - safe_zone_center.x) <= safe_zone_radius and abs(grid_pos.y - safe_zone_center.y) <= safe_zone_radius:
+				print("Cannot remove objects within the safety zone.")
+				return
+			
+			# Check if the cell above contains grass and play the animation if true
+			var above_pos = grid_pos + Vector2(0, -1)
+			if is_grass(above_pos):
+				var above_grass = grid_map[above_pos]
+				#above_grass.get_node("AnimationPlayer2D").play("default")
+				above_grass.play_grass_animation()
+
 			obj.queue_free()
 			grid_map[grid_pos] = null
+
+# New function to check if a grid cell contains grass
+func is_grass(grid_pos: Vector2) -> bool:
+	if is_within_grid_bounds(grid_pos) and grid_map[grid_pos] != null:
+		
+		if "StaticBody2D" in grid_map[grid_pos].name:
+			#print(grid_map[grid_pos].name)
+			return true
+	return false
+
+# Helper function to check if a grid position is within the grid bounds
+func is_within_grid_bounds(grid_pos: Vector2) -> bool:
+	return grid_pos in grid_map

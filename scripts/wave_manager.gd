@@ -7,7 +7,7 @@ extends Node
 @export var boss_enemy_scene: PackedScene
 @export var initial_wave_delay: float = 10.0
 @export var initial_spawn_interval: float = 3.0
-@export var initial_wave_size: int = 1
+@export var initial_wave_size: int = 500
 @export var difficulty_increase_interval: float = 60.0
 @export var map_size: Vector2 = Vector2(1280, 720)
 

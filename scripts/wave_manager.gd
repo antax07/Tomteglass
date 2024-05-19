@@ -18,16 +18,18 @@ extends Node
 @export var boss_enemy_health: int = 700
 @export var boss_enemy_attack: int = 50
 
-@export var waves_between_bosses: int = 30  # Reduced to delay boss appearance
-@export var wave_interval: float = 10.0  # Reduced time in seconds between waves
-@export var min_enemies_per_type: int = 1  # Minimum number of enemies to spawn per type
-@export var max_enemies_per_wave: int = 5  # Cap the number of enemies per wave
+@export var waves_between_bosses: int = 30
+@export var wave_interval: float = 10.0
+@export var min_enemies_per_type: int = 1
+@export var max_enemies_per_wave: int = 5
 
 var current_wave: int = 0
 var enemy_types: Array
 var active_enemies: Array = []
 
 var first_spawned = false
+
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	print("Game started")
@@ -53,6 +55,7 @@ func _process(delta):
 			print("Removing null enemy at index: ", i)
 			active_enemies.remove_at(i)
 	print("Active enemies count: ", active_enemies.size())
+	print_enemy_coordinates()
 
 func start_next_wave():
 	current_wave += 1
@@ -117,18 +120,16 @@ func _on_wave_timer_timeout():
 
 func get_random_border_position() -> Vector2:
 	var position = Vector2()
-	var edge = randi() % 4
-	match edge:
-		0:
-			position.x = randf() * map_size.x
-			position.y = 0
-		1:
-			position.x = randf() * map_size.x
-			position.y = map_size.y
-		2:
-			position.x = 0
-			position.y = randf() * map_size.y
-		3:
-			position.x = map_size.x
-			position.y = randf() * map_size.y
+	var edge = randi() % 2
+	if edge == 0:
+		position.x = -500
+	else:
+		position.x = 500
+	position.y = rng.randf_range(-360, 360)
+	print("Generated border position: ", position)
 	return position
+
+func print_enemy_coordinates():
+	print("Current enemy positions:")
+	for enemy in active_enemies:
+		print("Enemy at: ", enemy.global_position)

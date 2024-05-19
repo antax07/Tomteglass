@@ -3,7 +3,7 @@ extends Control
 enum BuildMode { NONE, MYCEL, TURRET, WALL, REMOVE }
 var current_mode = BuildMode.NONE
 
-var money = 120
+var money = 100
 
 const MYCEL_COST = 10
 const TURRET_COST = 40

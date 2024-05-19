@@ -119,15 +119,27 @@ func _on_wave_timer_timeout():
 	start_next_wave()
 
 func get_random_border_position() -> Vector2:
-	var position = Vector2()
-	var edge = randi() % 2
-	if edge == 0:
-		position.x = -500
+	var dir = randi() % 2
+	if dir == 0:
+		var position = Vector2()
+		var edge = randi() % 2
+		if edge == 0:
+			position.x = -500
+		else:
+			position.x = 500
+		position.y = rng.randf_range(-360, 360)
+		print("Generated border position: ", position)
+		return position
 	else:
-		position.x = 500
-	position.y = rng.randf_range(-360, 360)
-	print("Generated border position: ", position)
-	return position
+		var position = Vector2()
+		var edge = randi() % 2
+		if edge == 0:
+			position.y = -360
+		else:
+			position.y = 360
+		position.x = rng.randf_range(-500, 500)
+		print("Generated border position: ", position)
+		return position
 
 func print_enemy_coordinates():
 	print("Current enemy positions:")

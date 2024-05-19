@@ -183,12 +183,13 @@ animations = [{
 
 [node name="Strong Insect" instance=ExtResource("1_y0bbk")]
 script = ExtResource("2_3u3se")
+speed = 8.0
+health = 150
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_sldy8")
 animation = &"hurt"
-frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-11.5, 0)

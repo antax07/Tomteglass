@@ -11,8 +11,11 @@ extends CharacterBody2D
 
 var target: StaticBody2D = null
 var attack_timer: float = 0.0
+var money_in_it = 5
 var contains_money: bool = true
 var last_mushroom = null
+
+
 
 func _physics_process(delta: float) -> void:
 	find_nearest_mushroom()
@@ -65,6 +68,6 @@ func die() -> void:
 	attack_damage
 	if contains_money:
 		var ui_node = get_tree().root.get_node("Main/UI")
-		ui_node.add_money(20)
+		ui_node.add_money(money_in_it)
 		contains_money = false
 	animation_player.play("death")

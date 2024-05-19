@@ -61,3 +61,7 @@ func die() -> void:
 		ui_node.add_money(20)
 		contains_money = false
 	animation_player.play("death")
+
+
+func _on_wave_timer_timeout():
+	pass # Replace with function body.

@@ -1,6 +1,5 @@
 extends StaticBody2D
 
-@onready var animation_player = $AnimatedSprite2D
 @onready var sprite_2d = $Sprite2D
 
 @onready var timer = $Timer

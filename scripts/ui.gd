@@ -3,13 +3,12 @@ extends Control
 enum BuildMode { NONE, MYCEL, TURRET, WALL, REMOVE }
 var current_mode = BuildMode.NONE
 
-var money = 500
+var money = 80
 
 const MYCEL_COST = 10
 const TURRET_COST = 50
 const WALL_COST = 20
 
-@onready var mycel_button = $Panel/VBoxContainer/MycelButton
 @onready var turret_button = $Panel/VBoxContainer/TurretButton
 @onready var wall_button = $Panel/VBoxContainer/WallButton
 @onready var remove_button = $Panel/VBoxContainer/RemoveButton

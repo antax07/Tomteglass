@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var health: int = 200
+@export var health: int = 300
 @export var attack_damage: int = 50
 @export var attack_cooldown: float = 1.0
 

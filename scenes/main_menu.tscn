@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjdk11pkyroey"]
+[gd_scene load_steps=8 format=3 uid="uid://cjdk11pkyroey"]
 
 [ext_resource type="FontFile" uid="uid://domppl16314ho" path="res://assets/fonts/PixelOperator8.ttf" id="1_3noff"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_r71lk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bt25axnhpxeen" path="res://assets/sprites/main_menu.png" id="3_cjye6"]
 [ext_resource type="Texture2D" uid="uid://cuyqofnkbqu65" path="res://assets/sprites/credits_button.png" id="4_hyxsw"]
 [ext_resource type="Texture2D" uid="uid://k3yv1cpq0qv5" path="res://assets/sprites/quit_button.png" id="5_ds5pb"]
+[ext_resource type="AudioStream" uid="uid://c1pskywclfjdi" path="res://assets/sounds/Progress Report #3.mp3" id="7_bvrtn"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -63,6 +64,10 @@ texture_normal = ExtResource("4_hyxsw")
 [node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_ds5pb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_bvrtn")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy8wv0viambpc"]
+[gd_scene load_steps=8 format=3 uid="uid://dy8wv0viambpc"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_dyxyl"]
 [ext_resource type="FontFile" uid="uid://domppl16314ho" path="res://assets/fonts/PixelOperator8.ttf" id="2_30mfx"]
+[ext_resource type="Texture2D" uid="uid://c16b74cjy1k2u" path="res://assets/sprites/nutriece_icon.png" id="3_k7540"]
 [ext_resource type="Texture2D" uid="uid://dx8717eq4a2st" path="res://assets/sprites/health_bar.png" id="3_ot5d8"]
 [ext_resource type="Texture2D" uid="uid://dwekl821d0jcc" path="res://assets/sprites/missle_icon.png" id="4_mdc8c"]
 [ext_resource type="Texture2D" uid="uid://bsv1ssc647qyj" path="res://assets/sprites/wall_icon.png" id="5_c3275"]
@@ -42,6 +43,24 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 16
 text = "Nutriece: 0"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/MoneyLabel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = -136.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.512783, 0.512783)
+texture = ExtResource("3_k7540")
+expand_mode = 1
 
 [node name="TurretButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2

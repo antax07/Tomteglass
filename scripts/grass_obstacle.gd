@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 			if grid.is_grass(below_grid_pos):
 				sprite_2d.texture = TOP
 		else:
-			print(current_grid_pos)
 			sprite_2d.texture = EDGE
 
 func is_within_grid_bounds(grid_pos: Vector2) -> bool:

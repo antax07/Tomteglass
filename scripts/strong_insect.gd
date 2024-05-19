@@ -13,7 +13,7 @@ func attack_target() -> void:
 		animated_sprite_2d.play("dame")
 
 func take_damage(amount: int) -> void:
-	#animated_sprite_2d.play("hurt")
+
 	health -= amount
 	if health <= 0:
 		die()

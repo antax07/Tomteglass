@@ -1,8 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6hwbcwwio6ro"]
-
-[ext_resource type="Texture2D" uid="uid://boc0lh7o7ftes" path="res://assets/sprites/mycel.png" id="1_uxhhd"]
+[gd_scene format=3 uid="uid://dvvcmhkmemmrh"]
 
 [node name="Mycel" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_uxhhd")

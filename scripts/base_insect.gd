@@ -62,6 +62,7 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	attack_damage
 	if contains_money:
 		var ui_node = get_tree().root.get_node("Main/UI")
 		ui_node.add_money(20)

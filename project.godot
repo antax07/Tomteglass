@@ -14,6 +14,7 @@ config/name="Mycelium"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/sprites/trump_icon.png"
+config/windows_native_icon="res://scenes/MainICON.ico"
 
 [display]
 

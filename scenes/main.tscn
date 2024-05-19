@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0yhc8o3vws2f"]
+[gd_scene load_steps=10 format=3 uid="uid://b0yhc8o3vws2f"]
 
 [ext_resource type="PackedScene" uid="uid://hxvfvja7fdp1" path="res://scenes/player_mushroom.tscn" id="1_c3oit"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_h1riq"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://pr6i34i70nws" path="res://assets/sounds/Mushroom_Vibe-Clarinet_in_Bb(2).mp3" id="6_6v6go"]
 [ext_resource type="PackedScene" uid="uid://dy8wv0viambpc" path="res://scenes/ui.tscn" id="6_ambyc"]
 [ext_resource type="Texture2D" uid="uid://dy7gy4gl40t34" path="res://assets/sprites/grass_sheet.png" id="7_6dpab"]
-[ext_resource type="PackedScene" uid="uid://dwwpa37hugwb6" path="res://scenes/boss_insect.tscn" id="8_wi5y2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5oghb"]
 texture = ExtResource("7_6dpab")
@@ -73,9 +72,6 @@ autoplay = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 8.0
 autostart = true
-
-[node name="Boss Insect" parent="." instance=ExtResource("8_wi5y2")]
-position = Vector2(-160.745, 34)
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

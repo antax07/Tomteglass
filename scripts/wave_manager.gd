@@ -16,7 +16,7 @@ extends Node
 @export var strong_enemy_health: int = 200
 @export var strong_enemy_attack: int = 15
 @export var boss_enemy_health: int = 700
-@export var boss_enemy_attack: int = 50
+@export var boss_enemy_attack: int = 100
 
 @export var waves_between_bosses: int = 25
 @export var wave_interval: float = 10.0

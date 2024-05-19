@@ -98,7 +98,7 @@ icon = ExtResource("5_c3275")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 16
-text = "Remove: 20:-"
+text = "Remove: 10:-"
 icon = ExtResource("6_h6786")
 
 [node name="HealthBar" type="TextureProgressBar" parent="Panel/VBoxContainer"]

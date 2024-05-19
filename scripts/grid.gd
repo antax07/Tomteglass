@@ -140,7 +140,7 @@ func remove_object(grid_pos: Vector2) -> void:
 	if not is_mouse_in_ui_area():
 		if is_occupied(grid_pos) and not is_starting_tile(grid_pos):
 			var obj = grid_map[grid_pos]
-			var removal_cost = 20
+			var removal_cost = 10
 
 			var main_node = get_node("/root/Main")
 			var ui = main_node.get_node("UI")

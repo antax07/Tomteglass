@@ -263,6 +263,7 @@ animations = [{
 size = Vector2(339.875, 46)
 
 [node name="Boss Insect" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_ww45g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -18,7 +18,7 @@ extends Node
 @export var boss_enemy_health: int = 1000
 @export var boss_enemy_attack: int = 50
 
-@export var waves_between_bosses: int = 10  # Increased to delay boss appearance
+@export var waves_between_bosses: int = 50  # Increased to delay boss appearance
 @export var wave_interval: float = 10.0  # Time in seconds between waves
 @export var min_enemies_per_type: int = 1  # Minimum number of enemies to spawn per type
 @export var max_enemies_per_wave: int = 10  # Cap the number of enemies per wave

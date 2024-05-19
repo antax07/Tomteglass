@@ -146,7 +146,7 @@ func remove_object(grid_pos: Vector2) -> void:
 			var ui = main_node.get_node("UI")
 			if ui.spend_money(removal_cost):
 				var safe_zone_center = Vector2(0, 0)
-				var safe_zone_radius = 1
+				var safe_zone_radius = 0
 				
 				if abs(grid_pos.x - safe_zone_center.x) <= safe_zone_radius and abs(grid_pos.y - safe_zone_center.y) <= safe_zone_radius:
 					return

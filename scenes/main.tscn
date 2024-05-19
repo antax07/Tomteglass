@@ -65,4 +65,5 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 0, 65534, 0, 0, 262138, 0, 0, 196603
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_u0icp")
+volume_db = -80.0
 autoplay = true

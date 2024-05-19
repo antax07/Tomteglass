@@ -260,7 +260,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5a33"]
-size = Vector2(343.75, 46)
+size = Vector2(339.875, 46)
 
 [node name="Boss Insect" type="CharacterBody2D"]
 script = ExtResource("1_ww45g")
@@ -270,8 +270,8 @@ position = Vector2(-157, 23)
 rotation = -3.14159
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_l1vhd")
-animation = &"walk"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-167, 0)
+position = Vector2(-168.938, 0)
 shape = SubResource("RectangleShape2D_u5a33")

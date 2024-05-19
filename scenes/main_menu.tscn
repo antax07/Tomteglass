@@ -2,35 +2,10 @@
 
 [ext_resource type="FontFile" uid="uid://domppl16314ho" path="res://assets/fonts/PixelOperator8.ttf" id="1_3noff"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_r71lk"]
+[ext_resource type="Texture2D" uid="uid://bvf5u3rkp1wnw" path="res://assets/sprites/play_button.png" id="3_81m3v"]
 [ext_resource type="Texture2D" uid="uid://bt25axnhpxeen" path="res://assets/sprites/main_menu.png" id="3_cjye6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxnim"]
-atlas = ExtResource("3_cjye6")
-region = Rect2(640, 0, 320, 180)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4i6x0"]
-atlas = ExtResource("3_cjye6")
-region = Rect2(960, 0, 320, 180)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ivk0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oxnim")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4i6x0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oxnim")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4i6x0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
+[ext_resource type="Texture2D" uid="uid://cuyqofnkbqu65" path="res://assets/sprites/credits_button.png" id="4_hyxsw"]
+[ext_resource type="Texture2D" uid="uid://k3yv1cpq0qv5" path="res://assets/sprites/quit_button.png" id="5_ds5pb"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -41,20 +16,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r71lk")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(639.156, 363.375)
+scale = Vector2(3.64625, 3.64625)
+texture = ExtResource("3_cjye6")
+
 [node name="TitleLable" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_top = 153.0
-offset_right = 20.0
-offset_bottom = 176.0
+offset_left = -623.0
+offset_top = 24.0
+offset_right = 481.0
+offset_bottom = 152.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.309804, 0.560784, 0.729412, 1)
 theme_override_fonts/font = ExtResource("1_3noff")
-theme_override_font_sizes/font_size = 64
-text = "Tomteglass"
+theme_override_font_sizes/font_size = 128
+text = "Mycelium
+"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -63,38 +44,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -50.5
-offset_right = 35.0
-offset_bottom = 50.5
+offset_left = -619.0
+offset_top = 132.0
+offset_right = -427.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.69866, 1.69866)
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_3noff")
-theme_override_font_sizes/font_size = 32
-text = "Start"
+texture_normal = ExtResource("3_81m3v")
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_3noff")
-theme_override_font_sizes/font_size = 32
-text = "Credits"
+texture_normal = ExtResource("4_hyxsw")
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_3noff")
-theme_override_font_sizes/font_size = 32
-text = "Quit"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = -5
-position = Vector2(650, 366.5)
-scale = Vector2(4.05, 4.05)
-sprite_frames = SubResource("SpriteFrames_4ivk0")
-autoplay = "default"
-frame_progress = 0.329819
+texture_normal = ExtResource("5_ds5pb")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

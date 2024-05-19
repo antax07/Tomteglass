@@ -27,6 +27,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	wave_timer -= delta
 	difficulty_timer += delta
+	print(current_wave)
 
 	if wave_timer <= 0:
 		start_next_wave()

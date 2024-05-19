@@ -27,6 +27,8 @@ var current_wave: int = 0
 var enemy_types: Array
 var active_enemies: Array = []
 
+var first_spawned = false
+
 func _ready():
 	print("Game started")
 	enemy_types = [
@@ -101,6 +103,13 @@ func spawn_enemies(enemy_pool):
 		enemy.global_position = spawn_position
 		add_child(enemy)
 		active_enemies.append(enemy)
+		
+		# Cheat to immediately delete the first spawned enemy
+		if not first_spawned:
+			print("Deleting first spawned enemy")
+			enemy.queue_free()
+			active_enemies.pop_back()
+			first_spawned = true
 
 func _on_wave_timer_timeout():
 	print("Wave timer triggered")

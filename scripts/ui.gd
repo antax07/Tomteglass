@@ -14,6 +14,7 @@ const WALL_COST = 20
 @onready var remove_button = $Panel/VBoxContainer/RemoveButton
 @onready var money_label = $Panel/VBoxContainer/Panel2/MoneyLabel
 @onready var texture_progress_bar = $Panel/VBoxContainer/HealthBar
+@onready var label = $Panel2/Label
 
 var player_mushroom = null
 var start_health = 0
@@ -28,6 +29,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("deselect_build"):
 		current_mode = BuildMode.NONE
 	texture_progress_bar.value = float(player_mushroom.health) / float(start_health) * 100
+	var main_node = get_node("/root/Main")
+	var wave_manager = main_node.get_node("Wave Manager")
+	label.text = "Score: " + str(wave_manager.current_wave)
 
 func _on_turret_button_pressed() -> void:
 	current_mode = BuildMode.TURRET

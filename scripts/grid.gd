@@ -60,8 +60,8 @@ func grid_to_world(grid_pos: Vector2) -> Vector2:
 	return grid_pos * grid_size
 
 func is_occupied(grid_pos: Vector2) -> bool:
-	if abs(grid_pos.x) <= 1 and grid_pos.y >= -1 and grid_pos.y <= 1:
-		return true  # Central 3x2 area is always "occupied"
+	if grid_pos == Vector2(0, 0):
+		return true
 	return grid_pos in grid_map and grid_map[grid_pos] != null
 
 func place_object(grid_pos: Vector2, obj: Node2D) -> void:

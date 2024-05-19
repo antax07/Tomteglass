@@ -117,6 +117,42 @@ theme_override_fonts/font = ExtResource("2_30mfx")
 theme_override_font_sizes/font_size = 24
 text = "Exit to menu"
 
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 11.0
+offset_right = 640.0
+offset_bottom = 49.0
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -21.0
+offset_right = 145.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_30mfx")
+theme_override_font_sizes/font_size = 24
+text = "Round: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 544.0
+offset_right = 944.0
+offset_bottom = 568.0
+theme_override_fonts/font = ExtResource("2_30mfx")
+theme_override_font_sizes/font_size = 24
+text = "Enemies are apraoching, build your defeces..."
+
 [connection signal="pressed" from="Panel/VBoxContainer/TurretButton" to="." method="_on_turret_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/WallButton" to="." method="_on_wall_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]

@@ -18,7 +18,7 @@ extends Node
 @export var boss_enemy_health: int = 700
 @export var boss_enemy_attack: int = 50
 
-@export var waves_between_bosses: int = 30
+@export var waves_between_bosses: int = 25
 @export var wave_interval: float = 10.0
 @export var min_enemies_per_type: int = 1
 @export var max_enemies_per_wave: int = 5

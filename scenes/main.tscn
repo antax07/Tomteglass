@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0yhc8o3vws2f"]
+[gd_scene load_steps=10 format=3 uid="uid://b0yhc8o3vws2f"]
 
 [ext_resource type="PackedScene" uid="uid://hxvfvja7fdp1" path="res://scenes/player_mushroom.tscn" id="1_c3oit"]
 [ext_resource type="PackedScene" uid="uid://dgac8ed7jemqm" path="res://scenes/wave_manager.tscn" id="3_aku0n"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkkj05xy03phy" path="res://scenes/fast_insect.tscn" id="6_4uced"]
 [ext_resource type="PackedScene" uid="uid://dy8wv0viambpc" path="res://scenes/ui.tscn" id="6_ambyc"]
 [ext_resource type="Texture2D" uid="uid://dy7gy4gl40t34" path="res://assets/sprites/grass_sheet.png" id="7_6dpab"]
+[ext_resource type="AudioStream" uid="uid://bjvyd0b16tmox" path="res://assets/sounds/Mushroom_Vibe-Clarinet_in_Bb.mp3" id="7_iqkp2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5oghb"]
 texture = ExtResource("7_6dpab")
@@ -65,3 +66,7 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 0, 65534, 0, 0, 262138, 0, 0, 196603
 
 [node name="Fast Insect" parent="." instance=ExtResource("6_4uced")]
 position = Vector2(-366.745, 204)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_iqkp2")
+autoplay = true

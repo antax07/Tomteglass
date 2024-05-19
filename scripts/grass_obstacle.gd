@@ -14,7 +14,7 @@ func _ready() -> void:
 	grid = main_node.get_node("Test Mycel").get_node("Grid")
 
 func _process(delta: float) -> void:
-	if Time.get_ticks_msec() < 4200:
+	if true:
 		var current_position = self.position
 		var current_grid_pos = grid.world_to_grid(current_position)
 		var below_grid_pos = current_grid_pos + Vector2(0, 1)
